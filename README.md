@@ -12,7 +12,8 @@ This code requires Docker and Docker Compose
 
 ### Installation
 
-``` git clone https://github.com/cyberxml/log4j-poc
+``` 
+git clone https://github.com/cyberxml/log4j-poc
 cd log4j-poc
 # edit docker-compose.yml to addjust the environment variables as needed.
 # The listener IP address is the address of the machine on which you will run the netcat 'nc' listener
