@@ -1,10 +1,10 @@
 # log4j-poc
 
-## An LDAP exploit for CVE-2021-44228 Log4Shell
+## An LDAP RCE  exploit for CVE-2021-44228 Log4Shell
 
 ### Description
 
-The exploit code in this demo is based on that found at https://github.com/kozmer/log4j-shell-poc
+The rmeote exploit code in this demo is based on that found at https://github.com/kozmer/log4j-shell-poc
 
 ### Prerequisites
 
