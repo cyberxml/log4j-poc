@@ -2,6 +2,8 @@ version: "3.9"
 services:
   cve-web:
     build: cve-web
+    hostname: websvr
+    domainname: websvr.test
     environment:
       - POC_USERNAME=user
       - POC_PASSWORD=1qaz2wsx
@@ -12,6 +14,8 @@ services:
       - "8080:8080"
   cve-poc:
     build: cve-poc
+    hostname: ldapsvr
+    domainname: ldapsvr.test
     environment:
       - POC_ADDR=172.16.238.11
       - POC_PORT=80

