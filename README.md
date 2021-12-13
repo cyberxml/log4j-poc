@@ -16,8 +16,8 @@ This code requires Docker and Docker Compose
 git clone https://github.com/cyberxml/log4j-poc
 cd log4j-poc
 # edit docker-compose.yml to addjust the environment variables as needed.
-#   POC_ADDRESS is the address of the cve-poc container
-#   LISTENER_ADDRESS is the address of the 'nc' listener e.g. the docker host
+#   POC_ADDR is the address of the cve-poc container
+#   LISTENER_ADDR is the address of the 'nc' listener e.g. the docker host
 # The listener IP address is the address of the machine on which you will run the netcat 'nc' listener
 # This can be the local IP of the docker hostmachine.
 docker-compose build
