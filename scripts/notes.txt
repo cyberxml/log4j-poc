@@ -1,0 +1,1 @@
+log4j_rce_check.py: https://gist.github.com/byt3bl33d3r/46661bc206d323e6770907d259e009b6
