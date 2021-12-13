@@ -4,7 +4,7 @@
 
 ### Description
 
-The rmeote exploit code in this demo is based on that found at https://github.com/kozmer/log4j-shell-poc
+The remote exploit code in this demo is based on that found at https://github.com/kozmer/log4j-shell-poc
 
 ### Prerequisites
 
