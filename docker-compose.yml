@@ -2,6 +2,9 @@ version: "3.9"
 services:
   cve-web:
     build: cve-web
+    environment:
+      - POC_USERNAME=user
+      - POC_PASSWORD=1qaz2wsx
     networks:
       cve-net:
         ipv4_address: 172.16.238.10
