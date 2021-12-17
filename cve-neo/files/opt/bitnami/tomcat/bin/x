@@ -1,0 +1,2 @@
+CATALINA_HOME=/home/user/tomcat8
+CLASSPATH=$CATALINA_HOME/log4j2/lib/*:$CATALINA_HOME/log4j2/conf
