@@ -37,7 +37,7 @@ docker-compose build
 ### Run Web App Attack Demo
 
 1. Setup your docker listener in the first terminal
-    1. `nc -lv 10.10.10.31 9001`
+    1. `nc -lnvp 9001`
 1. Start the docker containers in a second terminal
     1. `docker-compose up`
 1. Navigate to the web app on port 8080
@@ -54,7 +54,7 @@ docker-compose build
 ### Run a User Agent Attack Demo
 
 1. Setup your docker listener in the first terminal
-    1. `nc -lv 10.10.10.31 9001`
+    1. `nc -lnvp 9001`
 1. Start the docker containers in a second terminal
     1. `docker-compose up`
 1. In a third terminal, run the following. The second IP is the docker host
